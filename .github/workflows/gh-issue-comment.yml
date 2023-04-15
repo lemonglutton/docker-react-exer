@@ -9,13 +9,13 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: "Get github context"
-        run: echo '${{ toJSON(github.event)}}' | jq
+        run: echo '${{ toJSON(github.event.issue)}}' | jq
         shell: bash
 
       - name: Create comment
         uses: peter-evans/create-or-update-comment@v3
         with:
-          issue-number: 1
+          issue-number: ${{ github.event.issue.number }}
           body: |
             This issue is available for anyone to work on. **Make sure to reference this issue in your pull request.** :sparkles: 
             - Thank you for your contribution! :sparkles:
