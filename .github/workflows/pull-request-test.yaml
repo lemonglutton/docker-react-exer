@@ -8,9 +8,13 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+
       - name: Print current working directory
-        run: ls
-        
+        run: echo "Currr working $(pwd)"
+
+      - name: Print content of folders
+        run: ls -lah
+
       - name: Checkout code
         uses: actions/checkout@v2
         with:
