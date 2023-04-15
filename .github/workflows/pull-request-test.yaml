@@ -1,25 +1,17 @@
-name: Tests Pull Request
+name: Run tests when making PR
 on:
   pull_request:
     branches: [ main ]
 
 jobs:
-  test: 
+  run-unit-tests: 
     runs-on: ubuntu-latest
 
     steps:
-
-      - name: Print current working directory
-        run: echo "Currr working $(pwd)"
-
-      - name: Print content of folders
-        run: ls -lah
-
       - name: Checkout code
         uses: actions/checkout@v2
         with:
-          ref: main
-          path: src, public, package.json, package-lock.json
+          ref: ${{ github.head_ref }}
 
       - name: Setup Node.js
         uses: actions/setup-node@v2
@@ -31,3 +23,5 @@ jobs:
 
       - name: Run tests
         run: npm run test
+
+
