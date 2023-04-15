@@ -8,10 +8,6 @@ jobs:
   comment-on-issue-using-action:
     runs-on: ubuntu-latest
     steps:
-      - name: "Get github context"
-        run: echo '${{ toJSON(github.event.issue)}}' | jq
-        shell: bash
-
       - name: Create comment
         uses: peter-evans/create-or-update-comment@v3
         with:
@@ -23,20 +19,20 @@ jobs:
 
           reactions: '+1'
 
-  # comment-on-issue-using-api:
-  #   runs-on: ubuntu-latest
-  #   steps:
-  #     - name: Create comment for an issue, using GH client
-  #       env: 
-  #         OWNER: lemonglutton
-  #         REPO: docker-react-exer
-  #         ISSUE_NUMBER: 1
-  #         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-  #       run: |
-  #         gh api \
-  #         --method POST \
-  #         -H "Accept: application/vnd.github+json" \
-  #         -H "X-GitHub-Api-Version: 2022-11-28" \
-  #         -H "Authorization: token $GITHUB_TOKEN "
-  #         /repos/$OWNER/$REPO/issues/$ISSUE_NUMBER/comments \
-  #         -F body='This issue comment is realized with GitHub API :sparkles'
+  comment-on-issue-using-api:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Create comment for an issue, using GH client
+        env: 
+          OWNER: lemonglutton
+          REPO: docker-react-exer
+          ISSUE_NUMBER: ${{ github.event.issue.number }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          gh api \
+          --method POST \
+          -H "Accept: application/vnd.github+json" \
+          -H "X-GitHub-Api-Version: 2022-11-28" \
+          -H "Authorization: token $GITHUB_TOKEN" \
+          /repos/$OWNER/$REPO/issues/$ISSUE_NUMBER/comments \
+          -F body='This issue comment is realized with **GitHub API** :sparkles:'
