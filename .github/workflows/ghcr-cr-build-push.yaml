@@ -4,9 +4,9 @@ on:
   push: 
     branches: [ main ]
 
-  env: 
-    IMAGE_NAME: reactapp/prod
-    REGISTRY: ghcr.io/lemonglutton
+env: 
+  IMAGE_NAME: reactapp/prod
+  REGISTRY: ghcr.io/sdas
 
 jobs:
   build-and-push:
