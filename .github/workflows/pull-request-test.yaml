@@ -14,6 +14,9 @@ jobs:
       - name: Print current working directory
         run: echo "Current working directory:\ $(pwd)"
 
+      - name: Check if echo gonna be invoked
+        run: echo "Hello all"
+
       - name: Checkout code
         uses: actions/checkout@v2
         with:
