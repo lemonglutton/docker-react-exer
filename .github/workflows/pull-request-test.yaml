@@ -1,22 +1,13 @@
-name: Tests Pull Request
+name: Run tests when making PR
 on:
   pull_request:
     branches: [ main ]
 
 jobs:
-  test: 
+  run-unit-tests: 
     runs-on: ubuntu-latest
 
     steps:
-      - name: Print content of files
-        run: ls -lah
-
-      - name: Print current working directory
-        run: echo "Current working directory:\ $(pwd)"
-
-      - name: Check if echo gonna be invoked
-        run: echo "Hello all"
-
       - name: Checkout code
         uses: actions/checkout@v2
         with:
