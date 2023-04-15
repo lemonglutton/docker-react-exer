@@ -11,7 +11,7 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v2
         with:
-          ref: main
+          ref: ${{ github.head_ref }}
           path: src, public, package.json, package-lock.json
 
       - name: Setup Node.js
@@ -24,3 +24,5 @@ jobs:
 
       - name: Run tests
         run: npm run test
+
+
