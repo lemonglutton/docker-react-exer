@@ -8,11 +8,16 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+      - name: Print content of files
+        run: ls -lah
+
+      - name: Print current working directory
+        run: echo "Current working directory:\ $(pwd)"
+
       - name: Checkout code
         uses: actions/checkout@v2
         with:
           ref: ${{ github.head_ref }}
-          path: src, public, package.json, package-lock.json
 
       - name: Setup Node.js
         uses: actions/setup-node@v2
