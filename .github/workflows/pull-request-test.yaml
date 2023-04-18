@@ -16,6 +16,12 @@ jobs:
             frontend
             Dockerfile.dev
 
+      - name: Debug step
+        run: echo pwd
+
+      - name: Debug step#2
+        run: ls -lah
+
       - name: Setup Node.js
         uses: actions/setup-node@v2
         with:
