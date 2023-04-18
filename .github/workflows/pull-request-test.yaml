@@ -17,18 +17,6 @@ jobs:
         with:
           ref: ${{ github.head_ref }}
 
-      - name: Debug step
-        run: echo pwd
-
-      - name: Debug step#2
-        run: ls -lah
-
-      - name: Move to frontend folder
-        run: cd ./frontend
-
-      - name: Debug step#3
-        run: ls -lah
-
       - name: Setup Node.js
         uses: actions/setup-node@v2
         with:
