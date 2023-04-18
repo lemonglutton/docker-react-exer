@@ -3,6 +3,10 @@ on:
   pull_request:
     branches: [ main ]
 
+defaults:
+  run:
+    working-directory: frontend
+
 jobs:
   run-unit-tests: 
     runs-on: ubuntu-latest
