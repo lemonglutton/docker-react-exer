@@ -5,7 +5,7 @@ on:
     branches: [ main ]
 
 env: 
-  IMAGE_NAME: reactapp/prod
+  IMAGE_NAME: react-app
   REGISTRY: ghcr.io/lemonglutton
 
 jobs:

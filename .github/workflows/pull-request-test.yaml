@@ -1,16 +1,29 @@
 name: Run tests when making PR
+
 on:
   pull_request:
-    branches: [ main ]
-
-defaults:
-  run:
-    working-directory: frontend
+    branches: [main]
 
 jobs:
-  run-unit-tests: 
+  changes:
     runs-on: ubuntu-latest
 
+    permissions:
+      pull-requests: read
+
+    outputs:
+      frontend: ${{ steps.filter.outputs.frontend }}
+
+    steps:
+      - uses: dorny/paths-filter@v2
+        id: filter
+        with:
+          filters: frontend:'frontend/**'
+
+  frontend:
+    needs: changes
+    if: ${{ needs.changes.outputs.frontend == 'true' }}
+    runs-on: ubuntu-latest
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
@@ -27,5 +40,3 @@ jobs:
 
       - name: Run tests
         run: npm run test
-
-
